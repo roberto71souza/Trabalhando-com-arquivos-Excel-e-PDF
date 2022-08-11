@@ -1,0 +1,78 @@
+﻿@model List<Excel_Pdf.Models.ProdutoModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Seja Bem vindo!</h1>
+
+    <div class="container">
+        <button class="m-2 btn btn-info btn-lg" onclick="openModal()">
+            Adicionar Produto
+        </button>
+
+        <a href="@Url.Action("GerarExcel","Home")"
+           class="m-2 btn btn-success btn-sm rounded-pill">Gerar Excel</a>
+
+        <a href="@Url.Action("GerarPDF","Home")"
+           class="m-2 btn btn-danger btn-sm rounded-pill">Gerar PDF</a>
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nome do produto</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Data cadastro</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        @foreach (var modelo in Model)
+        {
+            <tbody>
+                <tr>
+                    <th>@modelo.NomeProduto</th>
+                    <td>@modelo.Tipo</td>
+                    <td>@modelo.Quantidade</td>
+                    <td>@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", modelo.Preco)</td>
+                    <td>@modelo.DataCadastro.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <div class="drop-container">
+                            <div class="drop-icon">
+                                <img src="~/img/icon-dots.png" data-click="@modelo.Id" />
+                            </div>
+                            <div class="drop-option" data-option="@modelo.Id">
+                                <a href="@Url.Action("GerarExcel","Home", new {id=@modelo.Id })"
+                                   class="btn btn-success btn-sm rounded-pill">Gerar Excel</a>
+
+                                <a href="@Url.Action("GerarPDF","Home", new {id=@modelo.Id })"
+                                   class="btn btn-danger btn-sm rounded-pill">Gerar PDF</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model Excel_Pdf.Models.ProdutoModel
+
+<form id="formImportarExcel" asp-controller="Home" asp-action="ImportarExcel" method="post" enctype="multipart/form-data">
+    <label for="inputImportar" class="btnImportar btn btn-success m-2">
+        Importar Excel
+    </label>
+    <input id="inputImportar" name="file" type="file" />
+</form>
+
+<form id="formPostProduto" asp-controller="Home" asp-action="PostProduto" method="post">
+    <div class="col">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nome do Produto</label>
+            <input class="form-control" asp-for="@Model.NomeProduto" placeholder="Nome do produto" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Tipo</label>
+            <input class="form-control" asp-for="@Model.Tipo" placeholder="Tipo" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Quantidade</label>
+            <input type="number" class="form-control" asp-for="@Model.Quantidade" placeholder="Quantidade" />
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Preco</label>
+            <input type="text" class="form-control" asp-for="@Model.Preco" placeholder="Preco" />
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,57 @@
+﻿@model List<Excel_Pdf.Models.ProdutoModel>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "GerarPDF";
+    Layout = null;
+    var dataAtual = DateTime.Now.ToString("dd/MM/yyyy");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+    <div class="row flexrow m-1">
+        <img class="mr-4" style="width:150px; height:150px" src="~/img/pdf.png" />
+        <h4>Relatório de produtos gerado @dataAtual </h4>
+    </div>
+
+    <div class="container">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nome do produto</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Data cadastro</th>
+                </tr>
+            </thead>
+            @foreach (var modelo in Model)
+            {
+                <tbody>
+                    <tr>
+                        <th>@modelo.NomeProduto</th>
+                        <td>@modelo.Tipo</td>
+                        <td>@modelo.Quantidade</td>
+                        <td>@string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", modelo.Preco)</td>
+                        <td>@modelo.DataCadastro.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

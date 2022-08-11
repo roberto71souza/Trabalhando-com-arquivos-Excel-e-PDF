@@ -1,0 +1,69 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.drop-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.drop-icon {
+    width: 20px;
+    height: 20px;
+}
+
+    .drop-icon > img {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+.drop-option {
+    display: none;
+    position: absolute;
+    margin-left: 35px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    .drop-option.active {
+        display: flex;
+    }
+
+#inputImportar {
+    display: none;
+}
+
+.flexrow {
+    display: -webkit-box;
+    display: flex !important;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+    .flexrow > div {
+        -webkit-box-flex: 1;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; 
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
